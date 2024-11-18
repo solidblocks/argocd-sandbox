@@ -1,0 +1,30 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: tenants-bootstrap-appset
+  namespace: argocd
+spec:
+  generators:
+    - git:
+        repoURL: 'https://github.com/solidblocks/argocd-sandbox.git',
+        revision: test
+        directories:
+          - path: 'tenants/*'
+  template:
+    metadata:
+      name: 'applicationset-{{path.basename}}'
+    spec:
+      # project: platform-admin
+      source:
+        repoURL: 'https://github.com/solidblocks/argocd-sandbox.git',
+        targetRevision: test
+        path: '{{path}}'
+        directory:
+          recurse: true
+      destination:
+        server: 'https://kubernetes.default.svc'
+        namespace: argocd
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
