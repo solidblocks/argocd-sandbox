@@ -28,5 +28,3 @@ spec:
         automated:
           prune: true
           selfHeal: true
-      kustomize:
-        namePrefix: 'tenant-1-'
