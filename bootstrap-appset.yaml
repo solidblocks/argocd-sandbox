@@ -6,7 +6,7 @@ metadata:
 spec:
   generators:
     - git:
-        repoURL: 'https://github.com/solidblocks/argocd-sandbox.git',
+        repoURL: 'https://github.com/solidblocks/argocd-sandbox.git'
         revision: test
         directories:
           - path: 'tenants/*'
@@ -16,7 +16,7 @@ spec:
     spec:
       # project: platform-admin
       source:
-        repoURL: 'https://github.com/solidblocks/argocd-sandbox.git',
+        repoURL: 'https://github.com/solidblocks/argocd-sandbox.git'
         targetRevision: test
         path: '{{path}}'
         directory:
