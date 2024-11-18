@@ -14,7 +14,7 @@ spec:
     metadata:
       name: 'applicationset-{{path.basename}}'
     spec:
-      # project: platform-admin
+      project: default # should be bootstrap-project
       source:
         repoURL: 'https://github.com/solidblocks/argocd-sandbox.git'
         targetRevision: test
