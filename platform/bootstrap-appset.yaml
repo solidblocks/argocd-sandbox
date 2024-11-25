@@ -9,10 +9,10 @@ spec:
         repoURL: 'https://github.com/solidblocks/argocd-sandbox.git'
         revision: test
         directories:
-          - path: 'platform/tenants/*'
+          - path: 'platform/envs/*'
   template:
     metadata:
-      name: 'applicationset-{{path.basename}}'
+      name: 'applicationset-env-{{path.basename}}'
     spec:
       project: default # should be bootstrap-project
       source:

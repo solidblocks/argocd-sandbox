@@ -11,7 +11,7 @@ spec:
         repoURL: 'https://github.com/solidblocks/argocd-sandbox.git'
         revision: test
         directories:
-          - path: 'platfrom/tenants/*'
+          - path: 'platform/tenants/*'
   template:
     metadata:
       name: 'dev-{{path.basename}}'
