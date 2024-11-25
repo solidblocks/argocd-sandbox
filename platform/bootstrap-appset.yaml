@@ -8,6 +8,7 @@ spec:
     - git:
         repoURL: 'https://github.com/solidblocks/argocd-sandbox.git'
         revision: test
+
         directories:
           - path: 'platform/tenants/*/dev'
   template:
@@ -19,8 +20,6 @@ spec:
         repoURL: 'https://github.com/solidblocks/argocd-sandbox.git'
         targetRevision: test
         path: '{{path}}'
-        directory:
-          recurse: true
       destination:
         server: 'https://kubernetes.default.svc'
         namespace: argocd
