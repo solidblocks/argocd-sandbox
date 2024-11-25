@@ -17,13 +17,13 @@ spec:
           env: dev
   template:
     metadata:
-      name: '{{.values.env}}-{{path.basename}}'
+      name: '{{.values.env}}-{{.path.basename}}'
     spec:
       project: default # TODO should be tenant-1-project
       source:
         repoURL: 'https://github.com/solidblocks/argocd-sandbox.git'
         targetRevision: test
-        path: '{{path}}'
+        path: '{{.path}}'
       destination:
         server: 'https://kubernetes.default.svc'
         namespace: argocd
