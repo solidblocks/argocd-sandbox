@@ -14,7 +14,7 @@ spec:
         directories:
           - path: 'tenant/services/*/dev'
         values:
-          tenant_namespace: tenant-1-{{.path.basename}}
+          tenant_namespace: tenant-1-example-service
           name: tenant-1-example-service
   template:
     metadata:
