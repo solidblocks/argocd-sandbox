@@ -1,30 +1,33 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: tenant-1-configuration
+  name: tenant-1-dev-configuration
   namespace: argocd
   annotations:
     argocd.argoproj.io/sync-wave: "1"
 spec:
+  goTemplate: true
   generators:
     - git:
         repoURL: 'https://github.com/solidblocks/argocd-sandbox.git'
         revision: test
         directories:
-          - path: 'tenant/services/*/{{params.env}}'
+          - path: 'tenant/services/*/dev'
+        values:
+          tenant_namespace: tenant-1-{{path.basename}}
   template:
     metadata:
-      name: 'tenant-1-{{path.basename}}-{{params.env}}'
+      name: '{{.path.path}}'
     spec:
       project: default # TODO should be tenant-1-project
       source:
         repoURL: 'https://github.com/solidblocks/argocd-sandbox.git'
         targetRevision: test
-        path: '{{path}}/{{params.env}}'
+        path: '{{.path.path}}'
       destination:
         server: 'https://kubernetes.default.svc'
-        namespace: 'tenant-1-{{path.basename}}'
-      # syncPolicy:
-      #   automated:
-      #     prune: true
-      #     selfHeal: true
+        namespace: '.{{.values.tenant_namespace}}'
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
