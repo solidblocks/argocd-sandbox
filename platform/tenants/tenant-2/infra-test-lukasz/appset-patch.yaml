@@ -1,0 +1,16 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: configuration
+  namespace: argocd
+spec:
+  generators:
+    - git:
+        repoURL: 'https://github.com/solidblocks/argocd-sandbox.git'
+        revision: test
+        directories:
+          - path: 'tenant2/services/*/dev'
+        values:
+          tenant_namespace: tenant-2-infra-test-example-service
+          name: tenant-2-example-service-infra-test
+          repo_url: https://github.com/solidblocks/argocd-sandbox.git

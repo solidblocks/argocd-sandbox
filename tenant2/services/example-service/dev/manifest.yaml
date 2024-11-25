@@ -3,4 +3,4 @@ kind: ConfigMap
 metadata:
   name: config
 data:
-  name: "tenant-1-example-service-dev"
+  name: "tenant-2-example-service-dev"
