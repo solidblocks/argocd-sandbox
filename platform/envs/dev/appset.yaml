@@ -6,15 +6,18 @@ metadata:
   annotations:
     argocd.argoproj.io/sync-wave: "1"
 spec:
+  goTemplate: true
   generators:
     - git:
         repoURL: 'https://github.com/solidblocks/argocd-sandbox.git'
         revision: test
         directories:
           - path: 'platform/tenants/*'
+        values:
+          env: dev
   template:
     metadata:
-      name: 'dev-{{path.basename}}'
+      name: '{{.values.env}}-{{path.basename}}'
     spec:
       project: default # TODO should be tenant-1-project
       source:
@@ -23,11 +26,8 @@ spec:
         path: '{{path}}'
       destination:
         server: 'https://kubernetes.default.svc'
-        namespace: 'dev-{{path.basename}}'
+        namespace: argocd
       # syncPolicy:
       #   automated:
       #     prune: true
       #     selfHeal: true
-      params:
-        - name: env
-          value: dev
