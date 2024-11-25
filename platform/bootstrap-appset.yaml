@@ -4,6 +4,7 @@ metadata:
   name: tenants-bootstrap-appset
   namespace: argocd
 spec:
+  goTemplate: true
   generators:
     - git:
         repoURL: 'https://github.com/solidblocks/argocd-sandbox.git'
@@ -13,13 +14,13 @@ spec:
           - path: 'platform/tenants/*/dev'
   template:
     metadata:
-      name: 'bootstrap-env-{{path.basename}}'
+      name: 'bootstrap-{{ index .path.segments 2 }}-{{.path.basename}}'
     spec:
       project: default # should be bootstrap-project
       source:
         repoURL: 'https://github.com/solidblocks/argocd-sandbox.git'
         targetRevision: test
-        path: '{{path}}'
+        path: '{{.path.path}}'
       destination:
         server: 'https://kubernetes.default.svc'
         namespace: argocd

@@ -11,7 +11,7 @@ patches:
 - patch: |-
     - op: replace
       path: /metadata/name
-      value: tenant-2-example-service
+      value: tenant-2
   target:
     kind: Namespace
     name: namespace

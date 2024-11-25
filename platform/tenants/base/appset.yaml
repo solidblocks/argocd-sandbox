@@ -19,7 +19,7 @@ spec:
           repo_url: replace-me
   template:
     metadata:
-      name: '{{.values.name}}'
+      name: '{{.values.name}}-{{ index .path.segments 2 }}'
     spec:
       project: default # TODO should be tenant-1-project
       source:

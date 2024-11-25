@@ -11,6 +11,6 @@ spec:
         directories:
           - path: 'tenant2/services/*/dev'
         values:
-          tenant_namespace: tenant-2-infra-test-example-service
-          name: tenant-2-example-service-infra-test
+          tenant_namespace: tenant-2-infra-test
+          name: tenant-2-infra-test
           repo_url: https://github.com/solidblocks/argocd-sandbox.git
