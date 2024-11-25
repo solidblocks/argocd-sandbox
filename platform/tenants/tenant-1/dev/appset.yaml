@@ -15,9 +15,10 @@ spec:
           - path: 'tenant/services/*/dev'
         values:
           tenant_namespace: tenant-1-{{.path.basename}}
+          name: tenant-1-{{.path.basename}}-dev
   template:
     metadata:
-      name: '{{.path.path}}'
+      name: '{{.values.name}}'
     spec:
       project: default # TODO should be tenant-1-project
       source:
