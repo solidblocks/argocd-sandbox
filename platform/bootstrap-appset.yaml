@@ -12,7 +12,7 @@ spec:
           - path: 'platform/envs/*'
   template:
     metadata:
-      name: 'applicationset-env-{{path.basename}}'
+      name: 'bootstrap-env-{{path.basename}}'
     spec:
       project: default # should be bootstrap-project
       source:
