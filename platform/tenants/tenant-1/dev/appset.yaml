@@ -15,7 +15,7 @@ spec:
           - path: 'tenant/services/*/dev'
         values:
           tenant_namespace: tenant-1-{{.path.basename}}
-          name: tenant-1-{{.path.basename}}-dev
+          name: tenant-1-example-service
   template:
     metadata:
       name: '{{.values.name}}'
@@ -27,7 +27,7 @@ spec:
         path: '{{.path.path}}'
       destination:
         server: 'https://kubernetes.default.svc'
-        namespace: '.{{.values.tenant_namespace}}'
+        namespace: '{{.values.tenant_namespace}}'
       syncPolicy:
         automated:
           prune: true
